@@ -248,6 +248,40 @@ console.log(obj); // prints..
   ]}
 ```
 
+###Deleting
+
+```js
+var obj = {
+    comments: [
+      { title: 'funny' },
+      { title: 'exciting!' }
+    ]
+}
+
+mpath.delete('comments.1.title', obj)
+console.log(obj.comments[1].title) // undefined
+```
+
+`mpath.delete` supports the same array property notation as `mpath.get`.
+
+```js
+var obj = {
+    comments: [
+      { title: 'funny' },
+      { title: 'exciting!' }
+    ]
+}
+
+mpath.delete('comments.title', obj);
+
+console.log(obj); // prints..
+
+  { comments: [
+      { },
+      { }
+  ]}
+```
+
 ### Custom object types
 
 Sometimes you may want to enact the same functionality on custom object types that store all their real data internally, say for an ODM type object. No fear, `mpath` has you covered. Simply pass the name of the property being used to store the internal data and it will be traversed instead:
@@ -275,4 +309,3 @@ mpath.set(path, val, obj, '_doc', map);
 ```
 
 [LICENSE](https://github.com/aheckmann/mpath/blob/master/LICENSE)
-
